@@ -9,21 +9,40 @@ import {
   InputLeftElement,
   chakra,
   Box,
-  Link,
+  Tooltip,
   Avatar,
   FormControl,
   FormHelperText,
   InputRightElement,
+  Link,
 } from '@chakra-ui/react';
 
 import { FaLock } from 'react-icons/fa';
 
 const CFaLock = chakra(FaLock);
 
-export default function Login() {
+export default function Login({ setPass }) {
+  const [password, setPassword] = useState('');
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowClick = () => setShowPassword(!showPassword);
+
+  const handlePassword = (event) => setPassword(event.target.value);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    };
+
+    fetch('/api/authenticate', requestOptions).then((result) => {
+      result.status === 200 ? setPass(true) : setPass(false);
+    });
+  };
 
   return (
     <Flex
@@ -60,6 +79,7 @@ export default function Login() {
                   <Input
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Digite a palavra-chave"
+                    onChange={handlePassword}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -68,7 +88,13 @@ export default function Login() {
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link>Esqueceu?</Link>
+                  <Tooltip
+                    label="Manda um salve no slack"
+                    aria-label="Manda um salve no slack"
+                    placement="right"
+                  >
+                    <Link>Esqueceu?</Link>
+                  </Tooltip>
                 </FormHelperText>
               </FormControl>
               <Button
@@ -76,6 +102,7 @@ export default function Login() {
                 variant="solid"
                 colorScheme="blue"
                 width="full"
+                onClick={handleSubmit}
               >
                 Prosseguir
               </Button>
