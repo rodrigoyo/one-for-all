@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Login from '../src/components/login';
 
 import { getRecords } from '../src/services/sheets';
-
-const Title = styled.h1`
-  font-size: 50px;
-`;
 
 export default function Home({ records }) {
   const [pass, setPass] = useState(false);
