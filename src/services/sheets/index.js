@@ -17,17 +17,19 @@ export async function getRecords() {
 
     const rows = response.data.values;
     if (rows.length) {
-      return rows.map((row) =>
-        row[3] != ''
-          ? {
-              id: row[0] ?? '',
-              description: row[1] ?? '',
-              expert: row[2] ?? '',
-              url: row[3] ?? '',
-              secret: row[4] ?? '',
-            }
-          : false
-      );
+      return rows
+        .map((row) =>
+          row[3] != ''
+            ? {
+                id: row[0] ?? '',
+                description: row[1] ?? '',
+                expert: row[2] ?? '',
+                url: row[3] ?? '',
+                secret: row[4] ?? '',
+              }
+            : false
+        )
+        .filter((row) => row.url != '' ?? false);
     }
   } catch (err) {
     console.log(err);

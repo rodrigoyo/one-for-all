@@ -30,8 +30,8 @@ export default function Records({ list }) {
                     <Heading size="md">{`${description}`}</Heading>
                   </Box>
                   <Spacer />
-                  <Box p="2">
-                    <Heading size="sd">
+                  <Box p="2" textAlign="right">
+                    <Heading size="sd" textDecoration="underline">
                       <Link href={url}>link</Link>
                     </Heading>
                     <Heading size="md">{`${secret}`}</Heading>
