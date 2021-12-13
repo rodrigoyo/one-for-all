@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-
 export async function getRecords() {
   try {
     const target = ['https://www.googleapis.com/auth/spreadsheets.readonly'];

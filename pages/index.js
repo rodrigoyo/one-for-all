@@ -20,7 +20,11 @@ export async function getStaticProps(context) {
   const records = await getRecords();
   return {
     props: {
+<<<<<<< HEAD
       recordList: records.slice(1, records.length), // remove sheet header
+=======
+      records: records.slice(1, records.length), // remove sheet header
+>>>>>>> f4f257b (feat: load google sheets)
     },
     revalidate: 5,
   };
