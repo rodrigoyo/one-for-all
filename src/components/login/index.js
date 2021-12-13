@@ -17,9 +17,11 @@ import {
   Link,
 } from '@chakra-ui/react';
 
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const CFaLock = chakra(FaLock);
+const CFaEye = chakra(FaEye);
+const CFaEyeSlash = chakra(FaEyeSlash);
 
 export default function Login({ setPass }) {
   const [password, setPassword] = useState('');
@@ -83,7 +85,7 @@ export default function Login({ setPass }) {
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? 'Hide' : 'Show'}
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
