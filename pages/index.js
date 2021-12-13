@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import Login from '../src/components/login';
-
 import { getRecords } from '../src/services/sheets';
+import Login from '../src/components/login';
+import Records from '../src/components/records';
 
-export default function Home({ records }) {
+export default function Home({ recordList }) {
   const [pass, setPass] = useState(false);
 
   useEffect(() => {
@@ -12,10 +12,7 @@ export default function Home({ records }) {
   }, [pass]);
 
   return (
-    <>
-      <Login setPass={setPass} />
-      {records[0].title}
-    </>
+    <>{!pass ? <Login setPass={setPass} /> : <Records list={recordList} />}</>
   );
 }
 
@@ -23,7 +20,7 @@ export async function getStaticProps(context) {
   const records = await getRecords();
   return {
     props: {
-      records: records.slice(1, records.length), // remove sheet header
+      recordList: records.slice(1, records.length), // remove sheet header
     },
     revalidate: 5,
   };

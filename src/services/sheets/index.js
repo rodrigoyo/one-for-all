@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+
 export async function getRecords() {
   try {
     const target = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -17,9 +18,17 @@ export async function getRecords() {
 
     const rows = response.data.values;
     if (rows.length) {
-      return rows.map((row) => ({
-        title: row[2],
-      }));
+      return rows.map((row) =>
+        row[3] != ''
+          ? {
+              id: row[0] ?? '',
+              description: row[1] ?? '',
+              expert: row[2] ?? '',
+              url: row[3] ?? '',
+              secret: row[4] ?? '',
+            }
+          : false
+      );
     }
   } catch (err) {
     console.log(err);
