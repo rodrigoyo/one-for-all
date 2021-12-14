@@ -20,7 +20,7 @@ export async function getStaticProps(context) {
   const records = await getRecords();
   return {
     props: {
-      recordList: records.slice(1, records.length), // remove sheet header
+      recordList: records.slice(1, records.length),
     },
     revalidate: 5,
   };

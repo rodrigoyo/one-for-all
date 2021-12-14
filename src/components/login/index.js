@@ -76,14 +76,16 @@ export default function Login({ setPass }) {
                   <InputLeftElement
                     pointerEvents="none"
                     color="gray.300"
+                    height="100%"
                     children={<CFaLock color="gray.300" />}
                   />
                   <Input
+                    size="lg"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Digite a palavra-chave"
                     onChange={handlePassword}
                   />
-                  <InputRightElement width="4.5rem">
+                  <InputRightElement width="4.5rem" height="100%">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </Button>
@@ -104,6 +106,7 @@ export default function Login({ setPass }) {
                 variant="solid"
                 colorScheme="blue"
                 width="full"
+                size="lg"
                 onClick={handleSubmit}
               >
                 Prosseguir
