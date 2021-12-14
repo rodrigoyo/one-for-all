@@ -51,7 +51,6 @@ export default function Login({ setPass }) {
       flexDirection="column"
       width="100wh"
       height="100vh"
-      // backgroundColor="gray.200"
       justifyContent="center"
       alignItems="center"
     >
@@ -62,15 +61,9 @@ export default function Login({ setPass }) {
         alignItems="center"
       >
         <Avatar bg="blue.500" />
-        {/* <Heading color="teal.400">Welcome</Heading> */}
         <Box minW={{ base: '90%', md: '468px' }}>
           <form>
-            <Stack
-              spacing={4}
-              p="1rem"
-              // backgroundColor="whiteAlpha.900"
-              boxShadow="md"
-            >
+            <Stack spacing={4} p="1rem" boxShadow="md">
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
@@ -87,7 +80,7 @@ export default function Login({ setPass }) {
                   />
                   <InputRightElement width="4.5rem" height="100%">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      {showPassword ? <CFaEyeSlash /> : <CFaEye />}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
