@@ -1,84 +1,50 @@
-# Example app with styled-components
+# O que esse projeto faz?
+Esse projeto disponibiliza links de gravações do zoom armazenados em uma planilha pré definida. Essa disponibilização fica dentro de um ambiente seguro por uma senha pré definida.
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+# Posso utilizar esse projeto para meu uso pessoal?
+Sim, pode usar! Para isso, seguir os passos abaixo:
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+## Recursos necessários:
+- Ter uma conta no [google console](https://console.cloud.google.com/)
+- Uma planilha no [google sheets](https://www.google.com/sheets)
+- Ter uma conta na [vercel](https://vercel.com/)
 
-## Preview
+## Configurando tudo
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+### Github
+Primeiro faça um fork desse projeto para seu github.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
+### Configurando projeto no google console
+1 - Abra [google console](https://console.cloud.google.com/)
+2 - Crie um projeto ou você pode fazer isso por esse [link](https://console.developers.google.com/projectcreate) 
+3 - Volte para a página `APIs & Services` e vá em `ENABLE APIS AND SERVICES` e procure por `Google Sheets API` e habilite-o
 
-## Deploy your own
+![Google Sheets API](.github/assets/y3zaf6eollro3wdyoo5l.jpeg "Google Sheets API")
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+4 - Volte novamente para `APIs & Services` e click em `Credentials`, `CREATE CREDENTIALS`
+5 -Volte para a página Credenciais, em Contas de serviço, você verá seu e-mail criado para esse serviço
+6 - Selecione-o e click em `ADD KEY` e escolha JSON como tipo. Em seguida iniciará o download das chaves, baixe-as.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+![ADD KEY](.github/assets/650oajmzqecsqz511dub.jpeg "Add key")
 
-## How to use
+7 - Agora crie uma planilha no google sheets caso vc já não a tenha, essa planilha precisa ter o seguinte layout:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+![Layout](.github/assets/Screenshot%20from%202021-12-14%2022-20-19.png "Layout")
 
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
+8 - E compartilhe essa planilha com o email do serviço que criamos nos passos anteriores
+
+## Configurando vercel
+1 - Crie um projeto na vercel indicando o link do repositório do seu projeto
+2 - Inclua as variáveis de ambiente:
+```
+MASTER_PASSWORD=<senha para acessar seu projeto>
+GOOGLE_SHEETS_CLIENT_EMAIL=<email do serviço que criamos>
+GOOGLE_SHEETS_PRIVATE_KEY=<pegue esse valor da credential que fizemos download>
+SPREADSHEET_ID=<pegue o ID da planilha>
+SPREADSHEET_TAB_NAME=<o nome da aba dentro da planilha>
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+# Por que `one-for-all` ?
+Personagem de um anime chamado [`My Hero Academia`](https://pt.wikipedia.org/wiki/Boku_no_Hero_Academia). O personagem `One for all` é um super-herói que possui poderes herdados de forma cumulativa dos heróis antepassados. Os poderes são passados de pessoa a pessoa escolhida a dedo, sendo essa a última se tornando o novo `One for all`.
 
-### Try it on CodeSandbox
-
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-### Notes
-
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
-
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
-
-**components/StyledLink.js**
-
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
-
-**pages/index.js**
-
-```javascript
-import StyledLink from '../components/StyledLink'
-
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
-
-</details>
+![One for all](.github/assets/All-Might-My-Hero-Academia-capa-890x466.jpg "One for all")
