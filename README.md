@@ -1,5 +1,9 @@
 # O que esse projeto faz?
-Esse projeto disponibiliza links de gravações do zoom armazenados em uma planilha pré definida. Essa disponibilização fica dentro de um ambiente seguro por uma senha pré definida.
+Esse projeto disponibiliza links de gravações do zoom armazenados em uma planilha pré definida no google sheets. Essa disponibilização fica dentro de um ambiente seguro por uma senha pré definida.
+
+![Fluxograma](.github/assets/Screenshot%20from%202021-12-15%2010-12-04.png "Fluxograma")
+
+Exemplo de uso:
 
 ![Example](.github/assets/Peek%202021-12-15%2009-45.gif "Example")
 
