@@ -1,6 +1,8 @@
 # O que esse projeto faz?
 Esse projeto disponibiliza links de gravações do zoom armazenados em uma planilha pré definida. Essa disponibilização fica dentro de um ambiente seguro por uma senha pré definida.
 
+![Example](.github/assets/Peek%202021-12-15%2009-45.gif "Example")
+
 # Posso utilizar esse projeto para meu uso pessoal?
 Sim, pode usar! Para isso, seguir os passos abaixo:
 
