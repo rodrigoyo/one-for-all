@@ -32,7 +32,9 @@ export default function Records({ list }) {
                   <Spacer />
                   <Box p="2" textAlign="right">
                     <Heading size="sd" textDecoration="underline">
-                      <Link href={url}>link</Link>
+                      <Link href={url} isExternal>
+                        link
+                      </Link>
                     </Heading>
                     <Heading size="md">{`${secret}`}</Heading>
                   </Box>
