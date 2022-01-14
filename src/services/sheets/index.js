@@ -29,7 +29,7 @@ export async function getRecords() {
               }
             : false
         )
-        .filter((row) => row.url != '' ?? false);
+        .filter((row) => (row.url != '' && row.url != null) ?? false);
     }
   } catch (err) {
     console.log(err);
