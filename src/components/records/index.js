@@ -11,7 +11,7 @@ export default function Records({ list }) {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading color="blue.400">Gravações</Heading>
+        <Heading color="blue.400">Gravações das aulas</Heading>
         {list &&
           list.map((record) => {
             const { id, description, url, secret } = record;
@@ -26,17 +26,15 @@ export default function Records({ list }) {
               >
                 <Flex>
                   <Box p="2">
-                    <Heading size="sd">{`${id}`}</Heading>
-                    <Heading size="md">{`${description}`}</Heading>
+                    <Heading size="sm">{`${id}`}</Heading>
+                    <Link href={url} isExternal>
+                      <Heading size="sd">{`${description}`}</Heading>
+                    </Link>
                   </Box>
                   <Spacer />
                   <Box p="2" textAlign="right">
-                    <Heading size="sd" textDecoration="underline">
-                      <Link href={url} isExternal>
-                        link
-                      </Link>
-                    </Heading>
-                    <Heading size="md">{`${secret}`}</Heading>
+                    <Heading size="sd">Senha</Heading>
+                    <Heading size="xs">{`${secret}`}</Heading>
                   </Box>
                 </Flex>
               </Box>
